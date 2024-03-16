@@ -14,7 +14,7 @@ from colorama import Fore, Style
 
 def getMouse():
     try:
-        from hidmouse import MouseInstruct, DeviceNotFoundError
+        from utils.hidmouse import MouseInstruct, DeviceNotFoundError
         mouse = MouseInstruct.getMouse()
         print("[+] Thermometer connected properly! Now loading thermometer app... ")
         sleep(2)
