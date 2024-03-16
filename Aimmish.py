@@ -9,7 +9,7 @@ from keyboard import is_pressed, press, release
 import os
 from math import sqrt
 from config import *
-from gameSelection import gameSelection
+from utils.gameSelection import gameSelection
 from colorama import Fore, Style
 
 def getMouse():
