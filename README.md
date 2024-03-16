@@ -4,4 +4,5 @@
 - Written in full Python, not compiled to an EXE though but don't worry it's really easy to install.
 
 ## Video Setup Guide
-
+[Arduino IDE Download](https://downloads.arduino.cc/arduino-1.8.19-windows.exe)
+Video link
