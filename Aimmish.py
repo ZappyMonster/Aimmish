@@ -5,21 +5,25 @@ import win32api
 import pandas as pd
 from utils.general import (non_max_suppression, xyxy2xywh)
 import torch
-from keyboard import is_pressed, press, release
+from keyboard import is_pressed
 import os
 from math import sqrt
 from config import *
 from utils.gameSelection import gameSelection
+from utils.keybinds import *
 from colorama import Fore, Style
+
+holdAimBind = get_keycode(holdAimBind)
+holdTrigBind = get_keycode(holdTrigBind)
 
 def getMouse():
     try:
         from utils.hidmouse import MouseInstruct, DeviceNotFoundError
         mouse = MouseInstruct.getMouse()
-        print("[+] Thermometer connected properly! Now loading thermometer app... ")
+        print("[+] Mouse connected properly! Now loading the tool... ")
         sleep(2)
     except DeviceNotFoundError as e:
-        print("[-] Thermometer not connected... see the error below: ")
+        print("[-] Failed to connect... see the error below: ")
         print(e)
         sleep(2)
         camera.stop()
@@ -29,8 +33,8 @@ def getMouse():
 def banner():
     os.system('cls')
     print(Style.BRIGHT + Fore.CYAN + """ ENABLED! """ + Style.RESET_ALL)
-    print(Style.BRIGHT + Fore.YELLOW + "Press " + str(holdAimBind) + " to use the thermometer" + Style.RESET_ALL)
-    print(Style.BRIGHT + Fore.YELLOW + "Press " + str(holdTrigBind) + " to change the temperature" + Style.RESET_ALL)
+    print(Style.BRIGHT + Fore.YELLOW + "Press " + print_key(holdAimBind) + " to aim" + Style.RESET_ALL)
+    print(Style.BRIGHT + Fore.YELLOW + "Press " + print_key(holdTrigBind) + " to use trigger" + Style.RESET_ALL)
     # idk too lazy to do all the banner shit and have it be fancy
 
 def useMouse(xx, yy, inputType, m):
@@ -42,10 +46,11 @@ def useMouse(xx, yy, inputType, m):
         m.release()
 
 def main():
-    camera, cWidth, cHeight, game = gameSelection(autoSelectGame)
+    camera, cWidth, cHeight = gameSelection(autoSelectGame)
     os.system('cls')
     m = getMouse()
     banner()
+
 
     onnxProvider = ""
     if onnxChoice == 1:
@@ -59,12 +64,10 @@ def main():
     so = ort.SessionOptions()
     so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
     mdir = os.path.dirname(os.path.abspath(__file__))
-    if game == "Fortnite":
-        opath = os.path.join(mdir, 'models\\fortnite.onnx')
-    elif game == "Apex Legends":
-        opath = os.path.join(mdir, 'models\\apex.onnx')
-    else:
-        opath = os.path.join(mdir, 'models\\best.onnx')
+    if modelType == 1:
+        opath = os.path.join(mdir, 'models\\BetterForCloseRange.onnx')
+    if modelType == 2:
+        opath = os.path.join(mdir, 'models\\BetterForFarRange.onnx')
     ort_sess = ort.InferenceSession(opath, sess_options=so, providers=[onnxProvider])
 
 
@@ -92,7 +95,7 @@ def main():
                 if im.shape[3] == 4:
                     im = im[:, :, :, :3]
                 im = im / 255
-                im = im.astype(np.half) #np.float32 with ow2
+                im = im.astype(np.half)
                 im = np.moveaxis(im, 3, 1)
 
             if onnxChoice == 3:
@@ -170,8 +173,15 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except NameError:
-        print("[-] Error: Set your game to Windowed Fullscreen instead of Fullscreen...  ")
+    except NameError as f:
+        print("[-] Error connecting to the game... read below!:")
+        print(f)
+        sleep(5)
+        camera.stop()
+        exit()
     except Exception as e:
         print(str(e))
         print("[-] An error occurred, read the log above... ")
+        sleep(5)
+        camera.stop()
+        exit()
