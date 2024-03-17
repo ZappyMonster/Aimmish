@@ -1,4 +1,4 @@
-PyAutoGUI
+hidapi
 PyGetWindow
 opencv-python
 numpy
@@ -11,7 +11,7 @@ seaborn
 requests
 ipython
 psutil
-dxcam
+bettercam
 onnxruntime_directml
 torch
 torchvision
