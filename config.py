@@ -14,11 +14,13 @@ maskHeight = 200
 # Automatically hooks to Fortnite if True. But if this is set to True and you don't have Fortnite open, instead of waiting for you to open Fortnite it just crashes
 autoSelectGame = True
 
-# Aim speed config
+# Aim Config
 aimSpeed = 0.45
+
+# AI Confidence Level; By default, the aimbot will aim if it's at least 45% sure that it's looking at a player.
 confidence = 0.45
 
-# FOV Circle Size
+# FOV Circle Size; Range it'll aim from
 fovCircleSize = 100
 
 # Y Offset; self explanatory
@@ -26,19 +28,26 @@ Y_Offset = 0.35
 
 # What key to press to quit and shutdown the autoaim
 close_aimbot_key = "ctrl+alt+u"
+# MUCH faster than pressing the X on it. Trust me.
 
 # Smarter selection of people
 centerOfScreen = True # I think you shouldn't change this
 
-# Hold Aim Keybind
-holdAimBind = 0x02 # default is right click which is usually what people use for fortnite
+# Aimbot Keybind
+holdAimBind = "Right Click" # default is right click which is usually what people use for fortnite
+# Triggerbot Keybind
+holdTrigBind = "C" # default is the c key
+# https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes <-- GO THERE TO CHANGE KEYBINDS
 
-# Hold Trigger Keybind
-holdTrigBind = 0x43 # default is the c key
-# ^ if you wanna change these binds then go to https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes and find the right value
-trigDistance = 30 #distance of pixels enemy needs to be in to get shot. tweak this.
-trigAim = True #if trigger is pressed, itll turn on aim too
-# close up for box fights, its better to have low confidence. also note shooting through walls. also its kinda dogshit unless u have the aimbot toggled at the same time, then its good
+
+# Triggerbot FOV; Range it'll shoot within
+trigDistance = 30
+
+# If True, then it'll also aim while you hold down the triggerbot. Good for shotgun fights.
+trigAim = True
+
+# Which model do you want to use? Pick 1 for close range, pick 2 for long range.
+modelType = 2
 
 # Screenshot FPS, this also limits the aimbot FPS
 limit_fps = 120
