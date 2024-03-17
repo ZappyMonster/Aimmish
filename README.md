@@ -17,3 +17,7 @@
 - Make sure you clicked okay and install to everything when you installed Arduino IDE
 - If the pip install thing doesn't work, uninstall and reinstall Python making sure you check "Add Python.exe to PATH" when you install it. In addition, make sure another version of Python already installed on your PC isn't causing issues.
 - If the Arduino script doesn't decompile, then make sure you're waiting a few seconds before you press the "RESET" button on your Arduino Leonardo R3
+
+## Credits:
+Seconb (me) - Made several changes and optimizations to RootKit's AI Aimbot in this fork
+[RootKit Org](https://rootkit.org/) - [The original aimbot, from which this was forked](https://github.com/RootKit-Org/AI-Aimbot)
