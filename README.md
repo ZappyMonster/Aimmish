@@ -8,6 +8,7 @@
 - REQUIRES AN ARDUINO LEONARDO R3!!!!!
 
 ## Video Setup Guide
+- Do not DM me on Discord for help, use GitHub issues if you have any problems.
 - [Video Tutorial Link](https://streamable.com/srqx16)
 - [Arduino IDE Download](https://downloads.arduino.cc/arduino-1.8.19-windows.exe)
 - [Python Download](https://www.python.org/ftp/python/3.9.10/python-3.9.10-amd64.exe)
