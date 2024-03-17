@@ -225,8 +225,7 @@ def print_key(value):
     return hex_to_key.get(value, "Unknown Keybind")
 
 def get_keycode(keybind_description):
-    lowercase_description = keybind_description.lower()
     for description, keycode in key_to_hex.items():
-        if description.lower() == lowercase_description:
+        if str(description).lower() == str(keybind_description).lower():
             return keycode
     return None
